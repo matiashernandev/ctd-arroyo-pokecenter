@@ -1,19 +1,17 @@
-import React, { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { ContextoFormulario } from "../../context/ContextoFormulario";
 
-// Componente de entrada reutilizable que recibe varios props para renderizar diferentes campos de entrada
 const Input = ({ name, label, type = "text", tipo = "entrenador" }) => {
-	// Obtener la función 'handleForm' del contexto del formulario
+	// Destructuring de la función 'handleForm' del contexto del formulario
 	const { handleForm } = useContext(ContextoFormulario);
 
-	// Establecer el estado inicial del valor de entrada y definir el controlador de cambio
+	// Establece el estado inicial local
 	const [valueInput, setValueInput] = useState("");
-	const onChange = (e) => {
+	const handleChange = (e) => {
 		setValueInput(e.target.value);
 	};
 
-	// Definir el controlador 'onBlur' para enviar los datos actualizados al contexto del formulario al perder el foco de entrada
-	const onBlur = (e) => {
+	const handleBlur = (e) => {
 		e.preventDefault();
 
 		handleForm({
@@ -34,8 +32,8 @@ const Input = ({ name, label, type = "text", tipo = "entrenador" }) => {
 				type={type}
 				value={valueInput}
 				id={name}
-				onChange={onChange}
-				onBlur={onBlur}
+				onChange={handleChange}
+				onBlur={handleBlur}
 			/>
 		</div>
 	);

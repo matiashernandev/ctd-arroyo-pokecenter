@@ -1,6 +1,6 @@
 import { createContext, useReducer } from "react";
 
-// Definimos el estado inicial de nuestro formulario
+// Definimos el estado inicial del form
 const initialState = {
 	entrenador: {
 		nombre: "",
@@ -19,7 +19,7 @@ const initialState = {
 // Creamos nuestro reducer
 const reducer = (state, action) => {
 	switch (action.type) {
-		// Actualizamos los datos del entrenador en el estado
+		// Actualizamos los datos del entrenador en el state
 		case "ACTUALIZAR_ENTRENADOR":
 			return {
 				...state,
@@ -28,7 +28,7 @@ const reducer = (state, action) => {
 					[action.payload.field]: action.payload.value,
 				},
 			};
-		// Actualizamos los datos del pokemon en el estado
+		// Actualizamos los datos del pokemon en el state
 		case "ACTUALIZAR_POKEMON":
 			return {
 				...state,
@@ -37,9 +37,9 @@ const reducer = (state, action) => {
 					[action.payload.field]: action.payload.value,
 				},
 			};
-		// Si se recibe una acción desconocida, lanzamos un error
+		// Si se recibe una acción desconocida, se lanza una amigable advertencia
 		default:
-			throw new Error("No se ha recibido una acción");
+			throw new Error("No se ha recibido una acción válida");
 	}
 };
 
@@ -49,7 +49,7 @@ export const ContextoFormulario = createContext();
 export const FormularioProvider = ({ children }) => {
 	const [formulario, dispatch] = useReducer(reducer, initialState);
 
-	// Función para actualizar los datos del formulario
+	// Función para manejar los datos del form
 	const handleForm = ({ type, payload }) => {
 		dispatch({
 			type,

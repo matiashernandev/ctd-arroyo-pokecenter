@@ -1,7 +1,3 @@
-// Este componente muestra el detalle del formulario completado por el usuario.
-// Utiliza el ContextoFormulario para obtener los datos del formulario.
-// Cuando se hace clic en el botón "Enviar Solicitud", se muestra una alerta.
-
 import { useContext } from "react";
 import { ContextoFormulario } from "../../context/ContextoFormulario";
 
@@ -19,12 +15,11 @@ const Detalle = () => {
 		edadPokemon,
 	} = formulario?.pokemon;
 
-	// Maneja el evento de clic en el botón "Enviar Solicitud"
 	const handleClick = () => {
+		console.log(formulario);
 		alert("Solicitud enviada ô_ô");
 	};
 
-	// Renderiza los datos del formulario y el botón "Enviar Solicitud"
 	return (
 		<div className="detalle-formulario">
 			<section className="datos-cliente">
