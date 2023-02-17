@@ -1,3 +1,8 @@
+/**
+ * Componente que renderiza un formulario para solicitar atención para un Pokémon
+ * @returns {JSX.Element} Componente de formulario
+ */
+
 import React from "react";
 import { Link } from "react-router-dom";
 import entrenador from "../../assets/entrenador.png";

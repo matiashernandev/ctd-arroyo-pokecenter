@@ -1,9 +1,14 @@
-import { useContext } from "react";
-import { ContextoFormulario } from "../../context/ContextoFormulario";
+/**
+ * Muestra los detalles del formulario y permite enviar la solicitud.
+ * @returns {JSX.Element} Componente de detalles del formulario
+ */
+
+import { useFormularioContext } from "../../context/ContextoFormulario";
 
 const Detalle = () => {
 	// Obtiene los datos del formulario desde el ContextoFormulario
-	const { formulario } = useContext(ContextoFormulario);
+	/* const { formulario } = useContext(ContextoFormulario); */
+	const { formulario } = useFormularioContext();
 
 	// Destructura los datos del formulario para mostrarlos en el componente
 	const { nombre, apellido, email } = formulario?.entrenador;
@@ -14,6 +19,12 @@ const Detalle = () => {
 		alturaPokemon,
 		edadPokemon,
 	} = formulario?.pokemon;
+
+	/**
+	 * Maneja el evento de clic en el botón de enviar solicitud.
+	 * Imprime los datos del formulario en la consola y muestra una alerta.
+	 * @todo cambiar la alerta fea
+	 */
 
 	const handleClick = () => {
 		console.log(formulario);

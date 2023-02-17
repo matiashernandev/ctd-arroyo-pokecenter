@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useReducer, useContext } from "react";
 
 // Definimos el estado inicial del form
 const initialState = {
@@ -39,7 +39,7 @@ const reducer = (state, action) => {
 			};
 		// Si se recibe una acción desconocida, se lanza una amigable advertencia
 		default:
-			throw new Error("No se ha recibido una acción válida");
+			throw new Error("No se ha recibido una acción válida zonzo");
 	}
 };
 
@@ -50,12 +50,18 @@ export const FormularioProvider = ({ children }) => {
 	const [formulario, dispatch] = useReducer(reducer, initialState);
 
 	// Función para manejar los datos del form
+	/**
+	 * Maneja los datos del formulario
+	 * @param {{type: string, payload: {field: string, value: string}}} param0
+	 */
 	const handleForm = ({ type, payload }) => {
 		dispatch({
 			type,
 			payload,
 		});
 	};
+
+	//El parámetro param0 es una convención utilizada en JavaScript y otros lenguajes para referirse al primer parámetro de una función cuando no se le ha asignado un nombre específico.
 
 	return (
 		<ContextoFormulario.Provider
@@ -68,3 +74,11 @@ export const FormularioProvider = ({ children }) => {
 		</ContextoFormulario.Provider>
 	);
 };
+
+/**
+ * Este hook se utiliza para obtener el contexto del formulario
+ * @returns {{formulario: {}, handleForm: function}}
+ */
+export function useFormularioContext() {
+	return useContext(ContextoFormulario);
+}
