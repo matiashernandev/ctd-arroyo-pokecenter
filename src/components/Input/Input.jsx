@@ -1,30 +1,29 @@
-import { useStaten, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { ContextoFormulario } from "../../context/ContextoFormulario";
-import { useState } from "react";
 
-const Input = ({ name, label, type = "text" }) => {
-	// Aqui deberíamos acceder al estado global para poder obtener los datos
-	// del formulario y una manera de actualizar los mismos.
+// Componente de entrada reutilizable que recibe varios props para renderizar diferentes campos de entrada
+const Input = ({ name, label, type = "text", tipo = "entrenador" }) => {
+	// Obtener la función 'handleForm' del contexto del formulario
+	const { handleForm } = useContext(ContextoFormulario);
 
-	// También, utilizaremos un estado local para manejar el estado del input.
+	// Establecer el estado inicial del valor de entrada y definir el controlador de cambio
 	const [valueInput, setValueInput] = useState("");
-	const { formulario, cargaFormulario } = useContext(ContextoFormulario);
-
 	const onChange = (e) => {
-		// Aquí deberíamos actualizar el estado local del input.
 		setValueInput(e.target.value);
 	};
 
+	// Definir el controlador 'onBlur' para enviar los datos actualizados al contexto del formulario al perder el foco de entrada
 	const onBlur = (e) => {
 		e.preventDefault();
 
-		// Aqui deberíamos actualizar el estado global con los datos de
-		// cada input.
-		// TIP: Podemos utilizar el nombre de cada input para guardar
-		// los datos en el estado global usando una notación de { clave: valor }
-		cargaFormulario({
-			...formulario,
-			[name]: e.target.value,
+		handleForm({
+			// Envía la acción adecuada según el valor del prop 'tipo'
+			type:
+				tipo === "entrenador" ? "ACTUALIZAR_ENTRENADOR" : "ACTUALIZAR_POKEMON",
+			payload: {
+				field: name,
+				value: e.target.value,
+			},
 		});
 	};
 

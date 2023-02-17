@@ -1,31 +1,67 @@
-// Aqui debemos crear nuestro contexto y nuestro provider.
-import { createContext, useState } from "react";
+import { createContext, useReducer } from "react";
 
-// Creación del Contexto y valor inicial
-export const ContextoFormulario = createContext({
-	formulario: {
+// Definimos el estado inicial de nuestro formulario
+const initialState = {
+	entrenador: {
 		nombre: "",
 		apellido: "",
 		email: "",
-		nombrePokemon: "",
 	},
-	cargaFormulario: () => {},
-});
+	pokemon: {
+		nombrePokemon: "",
+		tipoPokemon: "",
+		elementoPokemon: "",
+		alturaPokemon: "",
+		edadPokemon: "",
+	},
+};
 
-const { Provider } = ContextoFormulario;
+// Creamos nuestro reducer
+const reducer = (state, action) => {
+	switch (action.type) {
+		// Actualizamos los datos del entrenador en el estado
+		case "ACTUALIZAR_ENTRENADOR":
+			return {
+				...state,
+				entrenador: {
+					...state.entrenador,
+					[action.payload.field]: action.payload.value,
+				},
+			};
+		// Actualizamos los datos del pokemon en el estado
+		case "ACTUALIZAR_POKEMON":
+			return {
+				...state,
+				pokemon: {
+					...state.pokemon,
+					[action.payload.field]: action.payload.value,
+				},
+			};
+		// Si se recibe una acción desconocida, lanzamos un error
+		default:
+			throw new Error("No se ha recibido una acción");
+	}
+};
+
+// Creamos nuestro contexto y nuestro provider
+export const ContextoFormulario = createContext();
 
 export const FormularioProvider = ({ children }) => {
-	const [formulario, setFormulario] = useState("");
+	const [formulario, dispatch] = useReducer(reducer, initialState);
 
-	const cargaFormulario = (data) => {
-		setFormulario(data);
+	// Función para actualizar los datos del formulario
+	const handleForm = ({ type, payload }) => {
+		dispatch({
+			type,
+			payload,
+		});
 	};
 
 	return (
 		<ContextoFormulario.Provider
 			value={{
 				formulario,
-				cargaFormulario,
+				handleForm,
 			}}
 		>
 			{children}
