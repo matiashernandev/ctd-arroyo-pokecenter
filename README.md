@@ -6,6 +6,7 @@ Esta es una aplicación de registro de entrenadores y Pokémon que te permite ag
 
 - React
 - [Vite](https://vitejs.dev/)
+- <a href="https://vitejs.dev/" target="_blank">Vite</a>
 - [pnpm](https://pnpm.io/es/)
 - Context API
 - JsDoc
