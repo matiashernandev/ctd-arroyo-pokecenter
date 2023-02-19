@@ -1,4 +1,5 @@
 import { createContext, useReducer, useContext } from "react";
+import PropTypes from "prop-types";
 
 // Definimos el estado inicial del form
 const initialState = {
@@ -75,10 +76,23 @@ export const FormularioProvider = ({ children }) => {
 	);
 };
 
+// FormularioProvider tiene una única propiedad requerida llamada children que debe ser de tipo node.
+
+FormularioProvider.propType = {
+	children: PropTypes.node.isRequired,
+};
+
 /**
- * Este hook se utiliza para obtener el contexto del formulario
+ * Este hook se utiliza para obtener el contexto del formulario.
  * @returns {{formulario: {}, handleForm: function}}
  */
 export function useFormularioContext() {
 	return useContext(ContextoFormulario);
 }
+
+// useFormularioContext espera que el objeto devuelto tenga una propiedad formulario de tipo objeto y una propiedad handleForm de tipo función.
+
+useFormularioContext.propTypes = {
+	formulario: PropTypes.object.isRequired,
+	handleForm: PropTypes.func.isRequired,
+};

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useFormularioContext } from "../../context/ContextoFormulario";
+import PropTypes from "prop-types";
 
 /**
  * Componente input de formulario.
@@ -55,6 +56,14 @@ const Input = ({ name, label, type = "text", tipo = "entrenador" }) => {
 			/>
 		</div>
 	);
+};
+
+//  Los campos name y label son requeridos y el campo type y tipo son opcionales y tienen valores por defecto.
+Input.propTypes = {
+	name: PropTypes.string.isRequired,
+	label: PropTypes.string.isRequired,
+	type: PropTypes.string,
+	tipo: PropTypes.string,
 };
 
 export default Input;
