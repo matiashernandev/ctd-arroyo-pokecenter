@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useFormularioContext } from "../../context/ContextoFormulario";
 import PropTypes from "prop-types";
+import usePokemonTypes from "../../hooks/usePokemonTypes";
 
 /**
  * Componente input de formulario.
@@ -43,6 +44,54 @@ const Input = ({ name, label, type = "text", tipo = "entrenador" }) => {
 			},
 		});
 	};
+
+	if (type === "select") {
+		const { data, isLoading, isError } = usePokemonTypes();
+
+		if (isLoading) {
+			//? isLoading (primera carga) en lugar de isFetching (por cada petición con data en caché)
+			return <p>Cargando</p>;
+		}
+		if (isError) {
+			return <p>Error</p>;
+		}
+
+		return (
+			<div className="input-contenedor">
+				<label htmlFor={name}>{label}</label>
+				<select
+					onChange={handleChange}
+					onBlur={handleBlur}
+					value={valueInput}
+					name={name}
+					id={name}
+				>
+					{data?.results.map((type, index) => (
+						<option key={index} value={type.name}>
+							{type.name}
+						</option>
+					))}
+				</select>
+			</div>
+
+			// <div className="input-contenedor">
+			// 	<label htmlFor={name}>{label}</label>
+
+			// 	<select
+			// 		id={name}
+			// 		value={valueInput}
+			// 		onChange={handleChange}
+			// 		onBlur={handleBlur}
+			// 	>
+			// 		{data?.results.map((type, index) => (
+			// 			<option key={index} value={type.name}>
+			// 				{type.name}
+			// 			</option>
+			// 		))}
+			// 	</select>
+			// </div>
+		);
+	}
 
 	return (
 		<div className="input-contenedor">

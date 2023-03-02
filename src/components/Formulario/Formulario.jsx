@@ -9,6 +9,7 @@ import entrenador from "../../assets/entrenador.png";
 import pikachu from "../../assets/pikachu.png";
 import pokebola from "../../assets/pokebola.png";
 import { FormularioProvider } from "../../context/ContextoFormulario";
+
 import Input from "../Input/Input";
 import Detalle from "./Detalle";
 
@@ -48,7 +49,13 @@ const Formulario = () => {
 									<span>POKEMON</span>
 								</p>
 								<Input name="nombrePokemon" label="Nombre" tipo="pokemon" />
-								<Input name="tipoPokemon" label="Tipo" tipo="pokemon" />
+								<Input
+									name="tipoPokemon"
+									label="Tipo"
+									tipo="pokemon"
+									type="select"
+								/>
+								{/* <Input name="tipoPokemon" label="Tipo" tipo="pokemon" /> */}
 								<Input name="elementoPokemon" label="Elemento" tipo="pokemon" />
 								<Input name="alturaPokemon" label="Altura" tipo="pokemon" />
 								<Input name="edadPokemon" label="Edad" tipo="pokemon" />
