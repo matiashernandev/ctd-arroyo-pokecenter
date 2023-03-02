@@ -211,3 +211,7 @@ select {
 .volver {
 	justify-self: end;
 }
+
+select {
+	width: 336px;
+}
