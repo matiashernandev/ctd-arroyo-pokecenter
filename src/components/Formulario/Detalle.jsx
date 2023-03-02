@@ -3,14 +3,30 @@
  * @returns {JSX.Element} Componente de detalles del formulario
  */
 
+import axios from "axios";
+import { useMutation } from "react-query";
 import { useFormularioContext } from "../../context/ContextoFormulario";
 
 const Detalle = () => {
-	// Obtiene los datos del formulario desde el ContextoFormulario
-	/* const { formulario } = useContext(ContextoFormulario); */
+	/* const mutation = useMutation(newPost => {
+		return axios.post()
+	} )
+ */
+
+	const mutation = useMutation(
+		async (formulario) =>
+			fetch("https://jsonplaceholder.typicode.com/posts", {
+				method: "POST",
+				headers: {
+					"Content-type": "application/json; charset=UTF-8",
+				},
+				body: JSON.stringify(formulario),
+			}).then((response) => response.json())
+		// .then((json) => console.log(json))
+	);
+
 	const { formulario } = useFormularioContext();
 
-	// Destructura los datos del formulario para mostrarlos en el componente
 	const { nombre, apellido, email } = formulario?.entrenador;
 	const {
 		nombrePokemon,
@@ -27,12 +43,14 @@ const Detalle = () => {
 	 */
 
 	const handleClick = () => {
-		console.log(formulario);
-		alert("Solicitud enviada ô_ô");
+		mutation.mutate(formulario);
+		//console.log(formulario);
 	};
 
 	return (
 		<div className="detalle-formulario">
+			{mutation.isSuccess ? alert("Se ha creado") : ""}
+
 			<section className="datos-cliente">
 				<h4>Datos del Entrenador</h4>
 				<div className="fila">
