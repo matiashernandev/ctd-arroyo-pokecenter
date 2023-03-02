@@ -1,0 +1,34 @@
+{
+  "data": [
+    {
+      "entrenador": {
+        "nombre": "fdsafa",
+        "apellido": "fdsafdsa",
+        "email": "fdsafdsa"
+      },
+      "pokemon": {
+        "nombrePokemon": "fdsaf",
+        "tipoPokemon": "psychic",
+        "elementoPokemon": "fdsaf",
+        "alturaPokemon": "fdsaf",
+        "edadPokemon": "fdsafas"
+      },
+      "id": 1
+    },
+    {
+      "entrenador": {
+        "nombre": "Hernán",
+        "apellido": "Arroyo",
+        "email": "sarasa@dsad.com"
+      },
+      "pokemon": {
+        "nombrePokemon": "Snorlax",
+        "tipoPokemon": "normal",
+        "elementoPokemon": "Normal",
+        "alturaPokemon": "2 metros",
+        "edadPokemon": "5 años"
+      },
+      "id": 2
+    }
+  ]
+}
