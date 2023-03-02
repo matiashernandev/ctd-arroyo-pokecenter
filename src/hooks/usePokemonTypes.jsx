@@ -4,7 +4,7 @@ import { sleep } from "../helpers/sleep";
 
 async function getTypes() {
 	const { data } = await pokemonApi.get("/type");
-	await sleep(1.5);
+	await sleep(1.5); //? para testear loader
 	return data;
 }
 
