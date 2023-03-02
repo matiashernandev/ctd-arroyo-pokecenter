@@ -8,22 +8,35 @@ import { useMutation } from "react-query";
 import { useFormularioContext } from "../../context/ContextoFormulario";
 
 const Detalle = () => {
-	/* const mutation = useMutation(newPost => {
-		return axios.post()
-	} )
- */
+	//? Con Fetch
+	/* 	const mutation = useMutation(async (formulario) =>
+		fetch("http://localhost:3001/data", {
+			method: "POST",
+			headers: {
+				"Content-type": "application/json; charset=UTF-8",
+			},
+			body: JSON.stringify(formulario),
+		}).then((response) => response.json())
+	); */
 
-	const mutation = useMutation(
-		async (formulario) =>
-			fetch("https://jsonplaceholder.typicode.com/posts", {
-				method: "POST",
-				headers: {
-					"Content-type": "application/json; charset=UTF-8",
-				},
-				body: JSON.stringify(formulario),
-			}).then((response) => response.json())
-		// .then((json) => console.log(json))
-	);
+	const mutation = useMutation(async (formulario) => {
+		try {
+			const response = await axios.post(
+				"http://localhost:3001/data",
+				formulario,
+				{
+					headers: {
+						"Content-type": "application/json; charset=UTF-8",
+					},
+				}
+			);
+			return response.data;
+		} catch (error) {
+			throw new Error(error);
+		}
+	});
+
+	//TODO validación de datos, alertas, isError, isLoading, is Fetching, Loader, T_T
 
 	const { formulario } = useFormularioContext();
 
