@@ -29,6 +29,66 @@
         "edadPokemon": "5 años"
       },
       "id": 2
+    },
+    {
+      "entrenador": {
+        "nombre": "fdsaf",
+        "apellido": "fdsafas",
+        "email": "fdsafda"
+      },
+      "pokemon": {
+        "nombrePokemon": "fdasfda",
+        "tipoPokemon": "psychic",
+        "elementoPokemon": "fdsafdsa",
+        "alturaPokemon": "fdsaf",
+        "edadPokemon": "fdasfsa"
+      },
+      "id": 3
+    },
+    {
+      "entrenador": {
+        "nombre": "aaa",
+        "apellido": "aaa",
+        "email": "aaa"
+      },
+      "pokemon": {
+        "nombrePokemon": "aaa",
+        "tipoPokemon": "dragon",
+        "elementoPokemon": "aaa",
+        "alturaPokemon": "aaa",
+        "edadPokemon": "aaa"
+      },
+      "id": 4
+    },
+    {
+      "entrenador": {
+        "nombre": "cors",
+        "apellido": "cors",
+        "email": "cors"
+      },
+      "pokemon": {
+        "nombrePokemon": "cors",
+        "tipoPokemon": "dragon",
+        "elementoPokemon": "cors",
+        "alturaPokemon": "cors",
+        "edadPokemon": "cors"
+      },
+      "id": 5
+    },
+    {
+      "entrenador": {
+        "nombre": "nombre funciona",
+        "apellido": "apellido  funciona",
+        "email": "email  funciona"
+      },
+      "pokemon": {
+        "nombrePokemon": " funciona",
+        "tipoPokemon": "normal",
+        "elementoPokemon": " funciona",
+        "alturaPokemon": " funciona",
+        "edadPokemon": " funciona"
+      },
+      "id": 6
     }
   ]
 }

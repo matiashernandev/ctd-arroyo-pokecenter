@@ -2,39 +2,51 @@
  * Muestra los detalles del formulario y permite enviar la solicitud.
  * @returns {JSX.Element} Componente de detalles del formulario
  */
-
+import { useEffect } from "react";
 import axios from "axios";
 import { useMutation } from "react-query";
 import { useFormularioContext } from "../../context/ContextoFormulario";
 
 const Detalle = () => {
 	//? Con Fetch
-	/* 	const mutation = useMutation(async (formulario) =>
-		fetch("http://localhost:3001/data", {
-			method: "POST",
-			headers: {
-				"Content-type": "application/json; charset=UTF-8",
-			},
-			body: JSON.stringify(formulario),
-		}).then((response) => response.json())
+	const { mutate, isLoading, isError, isSuccess } = useMutation(
+		async (formulario) =>
+			fetch("http://localhost:3001/data", {
+				method: "POST",
+				headers: {
+					"Content-type": "application/json; charset=UTF-8",
+					"Access-Control-Allow-Origin": "*",
+				},
+				body: JSON.stringify(formulario),
+			}).then((response) => response.json())
+	);
+
+	/* 	const { mutate, isLoading, isError, isSuccess } = useMutation(
+		async (formulario) => {
+			try {
+				const response = await axios.post(
+					"http://localhost:3001/data",
+					formulario,
+					{
+						headers: {
+							"Content-type": "application/json; charset=UTF-8",
+						},
+					}
+				);
+				return response.data;
+			} catch (error) {
+				throw new Error(error);
+			}
+		}
 	); */
 
-	const mutation = useMutation(async (formulario) => {
-		try {
-			const response = await axios.post(
-				"http://localhost:3001/data",
-				formulario,
-				{
-					headers: {
-						"Content-type": "application/json; charset=UTF-8",
-					},
-				}
-			);
-			return response.data;
-		} catch (error) {
-			throw new Error(error);
+	useEffect(() => {
+		if (isSuccess) {
+			alert("Formulario enviado y todo bien");
+		} else if (isError) {
+			alert("Error en el formulario");
 		}
-	});
+	}, [isSuccess, isError]);
 
 	//TODO validación de datos, alertas, isError, isLoading, is Fetching, Loader, T_T
 
@@ -56,13 +68,13 @@ const Detalle = () => {
 	 */
 
 	const handleClick = () => {
-		mutation.mutate(formulario);
+		mutate(formulario);
 		//console.log(formulario);
 	};
 
 	return (
 		<div className="detalle-formulario">
-			{mutation.isSuccess ? alert("Se ha creado") : ""}
+			{/* {isSuccess ? alert("Se ha creado") : ""} */}
 
 			<section className="datos-cliente">
 				<h4>Datos del Entrenador</h4>
