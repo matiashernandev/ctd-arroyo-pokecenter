@@ -89,6 +89,21 @@
         "edadPokemon": " funciona"
       },
       "id": 6
+    },
+    {
+      "entrenador": {
+        "nombre": "hgfd",
+        "apellido": "hgfd",
+        "email": "hgdfgh"
+      },
+      "pokemon": {
+        "nombrePokemon": "hgfd",
+        "tipoPokemon": "",
+        "elementoPokemon": "",
+        "alturaPokemon": "",
+        "edadPokemon": ""
+      },
+      "id": 7
     }
   ]
 }

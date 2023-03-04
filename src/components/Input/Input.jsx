@@ -12,11 +12,15 @@ import usePokemonTypes from "../../hooks/usePokemonTypes";
  * @param {string} [props.tipo="entrenador"] - Tipo de forulario.
  * @returns {JSX.Element} Componente de entrada.
  */
-const Input = ({ name, label, type = "text", tipo = "entrenador" }) => {
-	// Destructuring de la función 'handleForm' del contexto del formulario
+const Input = ({
+	name,
+	label,
+	type = "text",
+	tipo = "entrenador",
+	isFocus,
+}) => {
 	const { handleForm } = useFormularioContext();
 
-	// Establece el estado inicial local
 	const [valueInput, setValueInput] = useState("");
 
 	/**
@@ -73,23 +77,6 @@ const Input = ({ name, label, type = "text", tipo = "entrenador" }) => {
 					))}
 				</select>
 			</div>
-
-			// <div className="input-contenedor">
-			// 	<label htmlFor={name}>{label}</label>
-
-			// 	<select
-			// 		id={name}
-			// 		value={valueInput}
-			// 		onChange={handleChange}
-			// 		onBlur={handleBlur}
-			// 	>
-			// 		{data?.results.map((type, index) => (
-			// 			<option key={index} value={type.name}>
-			// 				{type.name}
-			// 			</option>
-			// 		))}
-			// 	</select>
-			// </div>
 		);
 	}
 
@@ -102,6 +89,7 @@ const Input = ({ name, label, type = "text", tipo = "entrenador" }) => {
 				id={name}
 				onChange={handleChange}
 				onBlur={handleBlur}
+				autoFocus={isFocus}
 			/>
 		</div>
 	);
