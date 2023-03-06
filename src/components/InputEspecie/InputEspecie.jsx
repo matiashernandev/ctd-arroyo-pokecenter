@@ -1,23 +1,23 @@
-import React, { useState, useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ContextoFormulario } from "../../context/ContextoFormulario";
 import usePokemonSpecies from "../../hooks/usePokemonSpecies";
 
-// Debemos reemplazar este array por los datos provenientes de la API.
-/* const especies = [
-	{ name: "bulbasaur", url: "https://pokeapi.co/api/v2/pokemon-species/1/" },
-	{ name: "ivysaur", url: "https://pokeapi.co/api/v2/pokemon-species/2/" },
-	{ name: "venusaur", url: "https://pokeapi.co/api/v2/pokemon-species/3/" },
-]; */
-
 const InputEspecie = ({ name, label }) => {
 	const [mostrarPopup, setMostrarPopup] = useState(false);
-	const { handleForm } = useContext(ContextoFormulario);
 	const [especies, setEspecies] = useState();
+	const [currentPage, setCurrentPage] = useState(1);
+	const [totalPages, setTotalPages] = useState(0);
 
-	const { data } = usePokemonSpecies();
+	const { handleForm } = useContext(ContextoFormulario);
+
+	const { data } = usePokemonSpecies({ page: currentPage });
 
 	useEffect(() => {
-		setEspecies(data?.results);
+		if (data) {
+			setEspecies(data.results);
+			setTotalPages(Math.ceil(data.count / 20));
+			console.log(data.results);
+		}
 	}, [data]);
 
 	const elegirEspecie = (e, nombreEspecie) => {
@@ -33,7 +33,6 @@ const InputEspecie = ({ name, label }) => {
 
 		setMostrarPopup(false);
 	};
-
 	const renderizarEspecies = () => (
 		<>
 			{especies.map((especie) => (
@@ -48,6 +47,18 @@ const InputEspecie = ({ name, label }) => {
 		</>
 	);
 
+	const irAPaginaAnterior = () => {
+		if (currentPage > 1) {
+			setCurrentPage((prevPage) => prevPage - 1);
+		}
+	};
+
+	const irAPaginaSiguiente = () => {
+		if (currentPage < totalPages) {
+			setCurrentPage((prevPage) => prevPage + 1);
+		}
+	};
+
 	if (especies) {
 		return (
 			<div className="input-contenedor">
@@ -56,8 +67,16 @@ const InputEspecie = ({ name, label }) => {
 						<h4>Seleccionar especie</h4>
 						<div className="contenedor-especies">{renderizarEspecies()}</div>
 						<div className="paginador">
-							<button className="boton-anterior">Anterior</button>
-							<button className="boton-siguiente">Siguiente</button>
+							<button
+								disabled={currentPage === 1}
+								onClick={irAPaginaAnterior}
+								className="boton-anterior"
+							>
+								Anterior
+							</button>
+							<button onClick={irAPaginaSiguiente} className="boton-siguiente">
+								Siguiente
+							</button>
 						</div>
 					</div>
 				)}
