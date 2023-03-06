@@ -104,6 +104,22 @@
         "edadPokemon": ""
       },
       "id": 7
+    },
+    {
+      "entrenador": {
+        "nombre": "",
+        "apellido": "",
+        "email": ""
+      },
+      "pokemon": {
+        "nombrePokemon": "",
+        "tipoPokemon": "",
+        "elementoPokemon": "",
+        "alturaPokemon": "",
+        "edadPokemon": "",
+        "especiePokemon": "caterpie"
+      },
+      "id": 8
     }
   ]
 }

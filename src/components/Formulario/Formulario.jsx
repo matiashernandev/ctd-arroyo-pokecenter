@@ -11,6 +11,7 @@ import pokebola from "../../assets/pokebola.png";
 import { FormularioProvider } from "../../context/ContextoFormulario";
 
 import Input from "../Input/Input";
+import InputEspecie from "../InputEspecie/InputEspecie";
 import Detalle from "./Detalle";
 
 const Formulario = () => {
@@ -59,6 +60,7 @@ const Formulario = () => {
 								<Input name="elementoPokemon" label="Elemento" tipo="pokemon" />
 								<Input name="alturaPokemon" label="Altura" tipo="pokemon" />
 								<Input name="edadPokemon" label="Edad" tipo="pokemon" />
+								<InputEspecie name="especiePokemon" label="Especie" />
 							</div>
 						</div>
 						<Detalle />

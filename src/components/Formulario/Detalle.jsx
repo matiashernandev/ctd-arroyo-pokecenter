@@ -59,6 +59,7 @@ const Detalle = () => {
 		elementoPokemon,
 		alturaPokemon,
 		edadPokemon,
+		especiePokemon,
 	} = formulario?.pokemon;
 
 	/**
@@ -92,6 +93,7 @@ const Detalle = () => {
 					<p>Elemento: {elementoPokemon}</p>
 					<p>Altura: {alturaPokemon}</p>
 					<p>Edad: {edadPokemon}</p>
+					<p>Especie: {especiePokemon}</p>
 				</div>
 			</section>
 			<button className="boton-enviar" onClick={handleClick}>
