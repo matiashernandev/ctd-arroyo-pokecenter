@@ -10,6 +10,7 @@ import usePokemonTypes from "../../hooks/usePokemonTypes";
  * @param {string} props.label - Etiqueta que describe el campo de entrada.
  * @param {string} [props.type="text"] - Tipo de campo de entrada.
  * @param {string} [props.tipo="entrenador"] - Tipo de forulario.
+ * @param {boolean} [props.isFocus=false] - Tiene foco.
  * @returns {JSX.Element} Componente de entrada.
  */
 const Input = ({
@@ -38,7 +39,6 @@ const Input = ({
 	const handleBlur = (e) => {
 		e.preventDefault();
 
-		// Envía la acción adecuada según el valor del prop 'tipo'
 		handleForm({
 			type:
 				tipo === "entrenador" ? "ACTUALIZAR_ENTRENADOR" : "ACTUALIZAR_POKEMON",
@@ -101,6 +101,7 @@ Input.propTypes = {
 	label: PropTypes.string.isRequired,
 	type: PropTypes.string,
 	tipo: PropTypes.string,
+	isFocus: PropTypes.boolean,
 };
 
 export default Input;

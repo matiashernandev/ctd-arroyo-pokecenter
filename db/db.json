@@ -120,6 +120,37 @@
         "especiePokemon": "caterpie"
       },
       "id": 8
+    },
+    {
+      "entrenador": {
+        "nombre": "",
+        "apellido": "",
+        "email": ""
+      },
+      "pokemon": {
+        "nombrePokemon": "",
+        "tipoPokemon": "",
+        "elementoPokemon": "",
+        "alturaPokemon": "",
+        "edadPokemon": ""
+      },
+      "id": 9
+    },
+    {
+      "entrenador": {
+        "nombre": "fdsaf",
+        "apellido": "fdsaff",
+        "email": "dsafa"
+      },
+      "pokemon": {
+        "nombrePokemon": "fdsafsad",
+        "tipoPokemon": "grass",
+        "elementoPokemon": "fdsaf",
+        "alturaPokemon": "fsdafsda",
+        "edadPokemon": "fsdafas",
+        "especiePokemon": "nidoran-m"
+      },
+      "id": 10
     }
   ]
 }

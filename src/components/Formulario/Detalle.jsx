@@ -1,15 +1,12 @@
-/**
- * Muestra los detalles del formulario y permite enviar la solicitud.
- * @returns {JSX.Element} Componente de detalles del formulario
- */
 import { useEffect } from "react";
-import axios from "axios";
 import { useMutation } from "react-query";
 import { useFormularioContext } from "../../context/ContextoFormulario";
 
+import axios from "axios";
+
 const Detalle = () => {
 	//? Con Fetch
-	const { mutate, isLoading, isError, isSuccess } = useMutation(
+	/* 	const { mutate, isLoading, isError, isSuccess } = useMutation(
 		async (formulario) =>
 			fetch("http://localhost:3001/data", {
 				method: "POST",
@@ -19,26 +16,24 @@ const Detalle = () => {
 				},
 				body: JSON.stringify(formulario),
 			}).then((response) => response.json())
-	);
-
-	/* 	const { mutate, isLoading, isError, isSuccess } = useMutation(
-		async (formulario) => {
-			try {
-				const response = await axios.post(
-					"http://localhost:3001/data",
-					formulario,
-					{
-						headers: {
-							"Content-type": "application/json; charset=UTF-8",
-						},
-					}
-				);
-				return response.data;
-			} catch (error) {
-				throw new Error(error);
-			}
-		}
 	); */
+
+	const { mutate, isError, isSuccess } = useMutation(async (formulario) => {
+		try {
+			const response = await axios.post(
+				"http://localhost:3001/data",
+				formulario,
+				{
+					headers: {
+						"Content-type": "application/json; charset=UTF-8",
+					},
+				}
+			);
+			return response.data;
+		} catch (error) {
+			throw new Error(error);
+		}
+	});
 
 	useEffect(() => {
 		if (isSuccess) {
@@ -47,8 +42,6 @@ const Detalle = () => {
 			alert("Error en el formulario");
 		}
 	}, [isSuccess, isError]);
-
-	//TODO validación de datos, alertas, isError, isLoading, is Fetching, Loader, T_T
 
 	const { formulario } = useFormularioContext();
 
@@ -62,12 +55,6 @@ const Detalle = () => {
 		especiePokemon,
 	} = formulario?.pokemon;
 
-	/**
-	 * Maneja el evento de clic en el botón de enviar solicitud.
-	 * Imprime los datos del formulario en la consola y muestra una alerta.
-	 * @todo cambiar la alerta fea
-	 */
-
 	const handleClick = () => {
 		mutate(formulario);
 		//console.log(formulario);
@@ -75,8 +62,6 @@ const Detalle = () => {
 
 	return (
 		<div className="detalle-formulario">
-			{/* {isSuccess ? alert("Se ha creado") : ""} */}
-
 			<section className="datos-cliente">
 				<h4>Datos del Entrenador</h4>
 				<div className="fila">

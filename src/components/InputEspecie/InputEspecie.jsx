@@ -4,19 +4,20 @@ import usePokemonSpecies from "../../hooks/usePokemonSpecies";
 
 const InputEspecie = ({ name, label }) => {
 	const [mostrarPopup, setMostrarPopup] = useState(false);
-	const [especies, setEspecies] = useState();
+	const [especies, setEspecies] = useState([]);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [totalPages, setTotalPages] = useState(0);
+	const [currentSpecie, setCurrentSpecie] = useState(null);
 
 	const { handleForm } = useContext(ContextoFormulario);
 
-	const { data } = usePokemonSpecies({ page: currentPage });
+	const { data, isLoading } = usePokemonSpecies({ page: currentPage });
 
 	useEffect(() => {
 		if (data) {
 			setEspecies(data.results);
 			setTotalPages(Math.ceil(data.count / 20));
-			console.log(data.results);
+			//console.log(data.results);
 		}
 	}, [data]);
 
@@ -30,6 +31,7 @@ const InputEspecie = ({ name, label }) => {
 				value: nombreEspecie,
 			},
 		});
+		setCurrentSpecie(nombreEspecie);
 
 		setMostrarPopup(false);
 	};
@@ -64,7 +66,13 @@ const InputEspecie = ({ name, label }) => {
 			<div className="input-contenedor">
 				{mostrarPopup && (
 					<div className="popup-especie">
+						<span>
+							Página {currentPage} de {totalPages}
+						</span>
 						<h4>Seleccionar especie</h4>
+						{isLoading && (
+							<div style={{ position: "absolute", left: "40%" }}>Cargando</div>
+						)}
 						<div className="contenedor-especies">{renderizarEspecies()}</div>
 						<div className="paginador">
 							<button
@@ -85,7 +93,7 @@ const InputEspecie = ({ name, label }) => {
 					className="boton-seleccionar-especies"
 					onClick={() => setMostrarPopup(true)}
 				>
-					Seleccionar
+					{currentSpecie || "Seleccionar"}
 				</button>
 			</div>
 		);

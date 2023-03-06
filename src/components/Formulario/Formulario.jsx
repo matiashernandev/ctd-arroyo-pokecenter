@@ -3,7 +3,6 @@
  * @returns {JSX.Element} Componente de formulario
  */
 
-import React from "react";
 import { Link } from "react-router-dom";
 import entrenador from "../../assets/entrenador.png";
 import pikachu from "../../assets/pikachu.png";
@@ -56,7 +55,6 @@ const Formulario = () => {
 									tipo="pokemon"
 									type="select"
 								/>
-								{/* <Input name="tipoPokemon" label="Tipo" tipo="pokemon" /> */}
 								<Input name="elementoPokemon" label="Elemento" tipo="pokemon" />
 								<Input name="alturaPokemon" label="Altura" tipo="pokemon" />
 								<Input name="edadPokemon" label="Edad" tipo="pokemon" />
