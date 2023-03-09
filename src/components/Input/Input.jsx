@@ -18,7 +18,7 @@ const Input = ({
 	label,
 	type = "text",
 	tipo = "entrenador",
-	isFocus,
+	isFocus = false,
 }) => {
 	const { handleForm } = useFormularioContext();
 
@@ -95,13 +95,12 @@ const Input = ({
 	);
 };
 
-//  Los campos name y label son requeridos y el campo type y tipo son opcionales y tienen valores por defecto.
 Input.propTypes = {
 	name: PropTypes.string.isRequired,
 	label: PropTypes.string.isRequired,
 	type: PropTypes.string,
 	tipo: PropTypes.string,
-	isFocus: PropTypes.boolean,
+	isFocus: PropTypes.bool,
 };
 
 export default Input;

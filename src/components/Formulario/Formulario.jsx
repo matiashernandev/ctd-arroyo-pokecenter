@@ -39,7 +39,7 @@ const Formulario = () => {
 									<img src={entrenador} alt="entrenador" />
 									<span>ENTRENADOR</span>
 								</p>
-								<Input isFocus name="nombre" label="Nombre" />
+								<Input isFocus={true} name="nombre" label="Nombre" />
 								<Input name="apellido" label="Apellido" />
 								<Input name="email" label="Email" type="email" />
 							</div>

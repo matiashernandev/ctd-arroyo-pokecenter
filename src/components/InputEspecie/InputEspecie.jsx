@@ -82,12 +82,20 @@ const InputEspecie = ({ name, label }) => {
 							>
 								Anterior
 							</button>
-							<button onClick={irAPaginaSiguiente} className="boton-siguiente">
+
+							<button
+								disabled={currentPage === totalPages}
+								onClick={irAPaginaSiguiente}
+								className="boton-siguiente"
+							>
 								Siguiente
 							</button>
+							{/* {console.log(totalPages)}
+							{console.log(currentPage)} */}
 						</div>
 					</div>
 				)}
+
 				<p htmlFor={name}>{label}</p>
 				<button
 					className="boton-seleccionar-especies"
